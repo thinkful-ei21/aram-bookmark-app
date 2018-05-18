@@ -1,6 +1,6 @@
 'use strict';
 /*global create store api expand $*/
-
+let filter = 0;
 
 const events = (function () {
 
@@ -20,9 +20,12 @@ const events = (function () {
 
       for (var y = 0; y < store.storedBookmarks.length; y++) {
         console.log('click');
-        $('#sidebar').append(`
+
+        if (store.storedBookmarks[y].rating > filter) {
+          $('#sidebar').append(`
       <button id="${store.storedBookmarks[y].id}" class="condensed w3-bar-item w3-button ">(${store.storedBookmarks[y].rating})${store.storedBookmarks[y].title}<button id="${store.storedBookmarks[y].id}" class="delete w3-button">X</button></button>
       `);
+        }
       }
     });
 
@@ -54,6 +57,15 @@ const events = (function () {
 
       console.log('delete live');
       // ----------------------------------------------------------------------------------------
+
+      // for (let p = 0; p < store.storedBookmarks.length; p++) {
+      //   if (store.storedBookmarks)
+
+      // }
+      // ----------------------------------------------------------------------------------------
+
+      // ----------------------------------------------------------------------------------------
+
       let expansion = {};
       $('.condensed').click(function () {
         let expandId = event.target.id;
@@ -110,7 +122,28 @@ const events = (function () {
     });
   }
 
-
+  function handleFilter() {
+    $('#5').click(function () {
+      filter = 4;
+      render();
+    });
+    $('#4').click(function () {
+      filter = 3;
+      render();
+    });
+    $('#3').click(function () {
+      filter = 2;
+      render();
+    });
+    $('#2').click(function () {
+      filter = 1;
+      render();
+    });
+    $('#1').click(function () {
+      filter = 0;
+      render();
+    });
+  }
 
   // function handlePullFromForm() {
   //   console.log('Can pull');
@@ -126,6 +159,7 @@ const events = (function () {
   const bindEventListener = function () {
     handleAddNewBookmark();
     //removeBookmark();
+    handleFilter();
     //handleExpand();
     //handlePullFromForm();
     console.log('event listener live');

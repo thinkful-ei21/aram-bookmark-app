@@ -26,21 +26,29 @@ const create = (function () {
   }
   
   handlePullFromForm();
+
+  function validateForm() {
+    var url = document.forms['form']['url'].value;
+    if (url == "") {
+      alert("Nope.");
+      return false;
+    }
+  }
     </script>
 
-           <form id="log">
+           <form name="form "id="log" onsubmit="return validateForm()">
                 
                         <legend>New Bookmark</legend>
                         URL:
                         <br>
-                        <input class="url" type="text" name="url">
+                        <input class="url" type="url" name="url" required>
                         <br> Description:
                         <br>
-                        <input id="description" type="text" name="description">
+                        <input id="description" type="text" name="description" required>
                         <br>
 
 
-                        <input id="radio" type="radio" name="rating" value="5"> 5
+                        <input id="radio" type="radio" name="rating" value="5" checked> 5
                         <br>
                         <input id="radio" type="radio" name="rating" value="4"> 4
                         <br>
@@ -54,7 +62,7 @@ const create = (function () {
                         <button class="submit" type="button">Add</button>
                   
                     </form>
-
+ 
 
 
       `;

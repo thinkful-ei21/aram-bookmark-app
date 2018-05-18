@@ -11,6 +11,14 @@ const api = (function () {
   };
 
   const createItem = function (title, url, description, rating, callback) {
+    if (!/^(f|ht)tps?:\/\//i.test(url)) {
+      $('#log').append('<div>test</div>');
+      alert('TEST ERROR: URL MUST BEGIN WITH HTTP(s)');
+
+
+
+    }
+
     let newItem = JSON.stringify({
       id: 0,
       title: title,
