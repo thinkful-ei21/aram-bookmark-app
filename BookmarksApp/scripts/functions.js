@@ -24,6 +24,7 @@ const create = (function () {
     });
 
   }
+  
   handlePullFromForm();
     </script>
 

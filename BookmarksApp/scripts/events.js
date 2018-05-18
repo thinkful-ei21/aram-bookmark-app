@@ -7,14 +7,40 @@ const events = (function () {
   const render = function () {
     api.getItems(function (listed) {
       store.storedBookmarks = listed;
+      for (var i = 0; i < store.storedBookmarks.length; i++) {
+        $('#condensed').remove();
+      }
+      for (var i = 0; i < store.storedBookmarks.length; i++) {
+        console.log('click');
+        $('#sidebar').append(`
+      <button id="condensed" class="w3-bar-item w3-button ">(${store.storedBookmarks[i].rating})${store.storedBookmarks[i].title}<span><button id="${store.storedBookmarks[i].id}" class="delete w3-button">X</button></span></button>
+      `);
+      }
     });
-    store.createNewCondensed();
+
+
 
 
     console.log('render ran');
 
   };
 
+  function removeBookmark() {
+    console.log('delete live');
+
+    $('.delete').click(function () {
+      console.log('deleted');
+      let targetId = $('.delete').attr('id');
+      $.ajax({
+        url: 'https://thinkful-list-api.herokuapp.com/luke/bookmarks/' + targetId,
+        type: 'DELETE',
+        success: function (result) {
+          this.render;
+          // Do something with the result
+        }
+      });
+    });
+  }
   function handleAddNewBookmark() {
     $('#add').click(function () {
       $('#log').remove();
@@ -46,7 +72,7 @@ const events = (function () {
 
   const bindEventListener = function () {
     handleAddNewBookmark();
-
+    removeBookmark();
     handleExpand();
     //handlePullFromForm();
     console.log('event listener live');

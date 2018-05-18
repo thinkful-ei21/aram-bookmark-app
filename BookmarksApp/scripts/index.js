@@ -2,9 +2,10 @@
 /*global store events $ */
 
 $(document).ready(function () {
-  events.bindEventListener();
   events.render();
-  
+  events.bindEventListener();
+  // store.createNewCondensed();
+
 });
 
 
