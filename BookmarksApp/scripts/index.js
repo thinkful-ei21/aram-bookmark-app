@@ -1,9 +1,10 @@
 'use strict';
-/*global events $ */
+/*global store events $ */
 
 $(document).ready(function () {
   events.bindEventListener();
-
+  events.render();
+  
 });
 
 

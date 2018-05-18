@@ -1,3 +1,31 @@
+//Todo
+Fix issue where sidebar doesn't render from API on load
+Add delete function
+Add filter function
+Attach handleExpand to the populated sidebar
+Add error handling
+Add form authentication
+
+
+!Organize!
+React-ful design pattern
+Go back and organize html and css into style sheets
+Make accesible
+make responsive for all viewports
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Fundamentals Final Project
 Build a Bookmarks App
 Project Overview

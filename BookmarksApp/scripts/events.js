@@ -1,13 +1,23 @@
 'use strict';
-/*global create expand $*/
+/*global create store api expand $*/
 
 
 const events = (function () {
 
+  const render = function () {
+    api.getItems(function (listed) {
+      store.storedBookmarks = listed;
+    });
+    store.createNewCondensed();
+
+
+    console.log('render ran');
+
+  };
+
   function handleAddNewBookmark() {
     $('#add').click(function () {
       $('#log').remove();
-
       $('#list').append(create.form);
     });
   }
@@ -23,24 +33,28 @@ const events = (function () {
     });
   }
 
-  function handlePullFromForm() {
-    $('#submit').submit(function () {
-      console.log('fired');
-      console.log($('#url').text());
-    });
+  // function handlePullFromForm() {
+  //   console.log('Can pull');
+  //   $('.submit').click(function (event) {
+  //     event.preventDefault();
+  //     console.log('fired');
+  //     console.log($('#radio').val());
 
-  }
+  //   });
+
+  // }
 
   const bindEventListener = function () {
     handleAddNewBookmark();
 
     handleExpand();
-    handlePullFromForm();
+    //handlePullFromForm();
     console.log('event listener live');
   };
 
   return {
     bindEventListener,
+    render,
 
   };
 })();
