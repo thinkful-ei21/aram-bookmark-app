@@ -1,5 +1,5 @@
 'use strict';
-/*global $*/
+/*global store $*/
 
 const create = (function () {
 
@@ -120,5 +120,16 @@ const expand = (function () {
 
   };
 })();
+
+const search = (function () {
+
+  //console.log('Item 1 ID: ' + store.storedBookmarks[0].id);
+
+  return {
+
+
+  };
+})();
+
 
 
