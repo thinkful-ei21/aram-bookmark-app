@@ -1,6 +1,6 @@
-//Todo
-Fix issue where sidebar doesn't render from API on load
-Add delete function
+// 5/18/2018 Todo
+Fix issue where sidebar doesn't render from API on load -- DONE
+Add delete function -- DONE
 Add filter function
 Attach handleExpand to the populated sidebar
 Add error handling

@@ -15,12 +15,13 @@ const events = (function () {
 
 
       events.deleteBookmark();
+      // handleExpand();
 
 
       for (var y = 0; y < store.storedBookmarks.length; y++) {
         console.log('click');
         $('#sidebar').append(`
-      <button id="${store.storedBookmarks[y].id}" class=" condensed w3-bar-item w3-button ">(${store.storedBookmarks[y].rating})${store.storedBookmarks[y].title}<button id="${store.storedBookmarks[y].id}" class="delete w3-button">X</button></button>
+      <button id="${store.storedBookmarks[y].id}" class="condensed w3-bar-item w3-button ">(${store.storedBookmarks[y].rating})${store.storedBookmarks[y].title}<button id="${store.storedBookmarks[y].id}" class="delete w3-button">X</button></button>
       `);
       }
     });
@@ -32,15 +33,14 @@ const events = (function () {
 
   };
   // function handleExpand() {
-  //   //for (let i = 0; i < store.storedBookmarks.length; i++) {
-  //   $(`#${store.storedBookmarks[i].id}`).click(function () {
-  //     expand.displayOnExpand(store.storedBookmarks[i].title, store.storedBookmarks[i].url, store.storedBookmarks[i].description, store.storedBookmarks[i].rating);
+  //   let expansion = [];
+  //   console.log('on');
+  //   $('.condensed').click(function () {
+  //     console.log('on');
+  //     let expandId = $('.condensed').attr('id');
+  //     console.log(expandId);
+
   //   });
-
-  //   //}
-
-
-
   // }
   // handleExpand();
   function deleteBookmark() {
@@ -53,6 +53,20 @@ const events = (function () {
 
 
       console.log('delete live');
+      // ----------------------------------------------------------------------------------------
+      let expansion = {};
+      $('.condensed').click(function () {
+        let expandId = event.target.id;
+        console.log(expandId);
+        for (let i = 0; i < store.storedBookmarks.length; i++) {
+          if (store.storedBookmarks[i].id === expandId) {
+            expansion = store.storedBookmarks[i];
+          }
+          expand.displayOnExpand(expansion.title, expansion.url, expansion.desc, expansion.rating);
+        }
+
+      });
+      // ----------------------------------------------------------------------------------------
       $('.delete').click(function () {
         console.log('pressed');
         let targetId = $('.delete').attr('id');
@@ -63,6 +77,8 @@ const events = (function () {
             console.log('delete successful');
             $(`#${targetId}`).remove();
             $(`#${targetId}`).remove();
+            $('#log').remove();
+
             // Do something with the result
           }
         });
